@@ -102,7 +102,6 @@ public class Main {
         final Map<String, List<String>> appliedWinningCombinations =
                 new HashMap<>();
 
-        final Symbol bonusSymbol = new Symbol();
         output.setReward(BigDecimal.ZERO);
         CalculationModel calculationModel = new CalculationModel();
 
@@ -135,12 +134,6 @@ public class Main {
                 .filter(symbol -> symbol.getType().equals(SymbolType.BONUS))
                 .filter(symbol -> symbol.getSymbol().equals(output.getAppliedBonusSymbol()))
                 .findFirst().ifPresent(symbol -> {
-                    bonusSymbol.setSymbol(symbol.getSymbol());
-                    bonusSymbol.setImpact(symbol.getImpact());
-                    bonusSymbol.setRewardMultiplier(symbol.getRewardMultiplier());
-                    bonusSymbol.setType(symbol.getType());
-                    bonusSymbol.setExtra(symbol.getExtra());
-
                     if (symbol.getImpact().equals(ImpactType.EXTRA_BONUS)) {
                         output.setReward(output.getReward().add(BigDecimal.valueOf(symbol.getExtra())));
                     } else if (symbol.getImpact().equals(ImpactType.MULTIPLY_REWARD)) {
