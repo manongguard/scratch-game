@@ -87,7 +87,9 @@ public class Main {
                 output.setAppliedWinningCombinations(null);
             }
 
-            System.out.println(output);
+            String outputString = mapper.writeValueAsString(output);
+
+            System.out.println(outputString);
 
 
         } catch (IOException e) {
